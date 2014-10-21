@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /tags
+Disallow: /product/buy
+Disallow: /signin
