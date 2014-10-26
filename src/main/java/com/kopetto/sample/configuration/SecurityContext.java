@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.preauth.AbstractPreAuthenticatedProcessingFilter;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.util.AntPathRequestMatcher;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.security.SocialAuthenticationFilter;
 import org.springframework.social.security.SocialAuthenticationProvider;
@@ -108,11 +109,13 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                 .antMatchers("/dologin").permitAll()//form login
                 .antMatchers("/favicon.ico","robots.txt","/resources/**","/site/**").permitAll()
                 .antMatchers("/account").hasAuthority("ROLE_USER")
+                .antMatchers("/search").permitAll()
                 .and()
          .addFilterBefore(socialAuthenticationFilter(), AbstractPreAuthenticatedProcessingFilter.class)
          .logout()
          .deleteCookies("JSESSIONID")
-         .logoutUrl("/signout")
+         //.logoutUrl("/signout")
+         .logoutRequestMatcher(new AntPathRequestMatcher("/signout", "GET"))
          .logoutSuccessUrl("/")
          .permitAll()
          .and()

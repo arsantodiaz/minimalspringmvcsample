@@ -4,6 +4,12 @@
 <th:block th:include="layout/main :: #navbar" ></th:block>
 
 <body>
-signin with facebook:<a href="signin/facebook">Sign In with FaceBook</a>
+	<div sec:authorize=" !authenticated">
+		signin with facebook:<a href="signin/facebook">Sign In with FaceBook</a>
+	</div>
+	<div sec:authorize=" authenticated">
+		You've already signed in. <a href="signout">Sign out</a>
+	</div>
+
 </body>
 </html>
