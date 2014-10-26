@@ -3,6 +3,8 @@ minimalspringmvcsample
 
 Sample minimal web application written using Java, Spring, Spring Social, Thymeleaf and Angular JS. 
 
+I'm creating a separate branch for each new set of features I'm adding, so you can grab whatever you need. For example, the M0 branch contains the very basic web app, M1 contains a bit more features and so on.
+
 How to build this project:
 
 - install gradle
