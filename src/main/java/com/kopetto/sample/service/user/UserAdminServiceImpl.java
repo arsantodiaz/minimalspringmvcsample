@@ -10,7 +10,7 @@ import com.kopetto.sample.domain.dao.profile.UserAccountRepository;
 import com.kopetto.sample.domain.entity.profile.User;
 import com.kopetto.sample.domain.entity.profile.UserRoleType;
 import com.kopetto.sample.service.CounterService;
-import com.kopetto.sample.util.AccountUtils;
+import com.kopetto.sample.util.UserUtils;
 
 /**
  * Implementation for UserAdminService.
@@ -67,7 +67,7 @@ public class UserAdminServiceImpl implements UserAdminService {
 
     @Override
     public String getUserId() {
-        return AccountUtils.getLoginUserId();
+        return UserUtils.getLoginUserId();
     }
 
     @Override

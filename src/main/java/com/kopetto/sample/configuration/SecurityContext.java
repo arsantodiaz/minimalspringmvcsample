@@ -109,6 +109,7 @@ public class SecurityContext extends WebSecurityConfigurerAdapter {
                 .antMatchers("/dologin").permitAll()//form login
                 .antMatchers("/favicon.ico","robots.txt","/resources/**","/site/**").permitAll()
                 .antMatchers("/account").hasAuthority("ROLE_USER")
+                .antMatchers("/orders").hasAuthority("ROLE_USER")
                 .antMatchers("/search").permitAll()
                 .and()
          .addFilterBefore(socialAuthenticationFilter(), AbstractPreAuthenticatedProcessingFilter.class)

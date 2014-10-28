@@ -34,7 +34,35 @@
               			<li th:class="${pageId == 'home' ? 'active' : ''}"><a href="/sample">Home</a></li>
               			<li th:class="${pageId == 'account' ? 'active' : ''}"><a href="account">Account</a></li>
               			<li th:class="${pageId == 'search' ? 'active' : ''}"><a href="search">Search</a></li>
-              			<li th:class="${pageId == 'signin' ? 'active' : ''}"><a href="signin">Sign In</a></li>
+
+              			<li
+              				sec:authorize="! authenticated" 
+              				th:class="${pageId == 'signin' ? 'active' : ''}"><a href="signin">Sign In</a></li>
+              			
+						<li  class="dropdown" sec:authorize=" authenticated">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
+								<i class="icon-user"></i> 
+								<span th:text="${loggedinUser.displayName}">User Name</span> 
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="#" th:href="@{orders}">
+										<i class="icon-wrench"></i> 
+										My Orders 
+									</a>
+								</li>
+
+								<li class="divider"></li>
+								<li>
+									<a href="#" th:href="@{/signout}">
+										<i class="icon-signout"></i> 
+										Sign out
+									</a>
+								</li>
+							</ul>
+						</li>
+              			
             		</ul>
           		</div><!--/.nav-collapse -->
         	</div><!--/.container-fluid -->
@@ -42,6 +70,10 @@
 
 	</div> <!-- /container -->
     
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <th:block id="scripts">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
+    </th:block>
 </body>
 </html>

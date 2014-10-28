@@ -117,6 +117,12 @@ dependencies {
     compile group: 'org.apache.tiles', name: 'tiles-servlet', version:thymeLeafVersion
     compile group: 'org.apache.tiles', name: 'tiles-jsp', version:thymeLeafVersion
 
+    testCompile(group: 'org.springframework', name: 'spring-test', version:springVersion) {
+		exclude(module: 'commons-logging')
+    }
+
+    testCompile group: 'junit', name: 'junit', version:'4.11'
+
 }
 
 test {

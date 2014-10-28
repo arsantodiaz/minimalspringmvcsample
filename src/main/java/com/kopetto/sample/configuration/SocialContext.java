@@ -25,7 +25,7 @@ import com.kopetto.sample.domain.dao.profile.UserSocialConnectionRepository;
 import com.kopetto.sample.domain.dao.social.MongoUsersConnectionRepositoryImpl;
 import com.kopetto.sample.domain.entity.profile.User;
 import com.kopetto.sample.service.user.UserService;
-import com.kopetto.sample.util.AccountUtils;
+import com.kopetto.sample.util.UserUtils;
 
 @Configuration
 public class SocialContext {
@@ -74,7 +74,7 @@ public class SocialContext {
     @Bean
     @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
     public ConnectionRepository connectionRepository() {
-        User user = AccountUtils.getLoginUserAccount();
+        User user = UserUtils.getLoginUser();
         return usersConnectionRepository().createConnectionRepository(user.getUsername());
     }
 

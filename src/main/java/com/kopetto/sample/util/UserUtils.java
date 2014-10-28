@@ -8,12 +8,12 @@ import com.kopetto.sample.domain.entity.profile.User;
 /**
  * 
  */
-public class AccountUtils {
+public class UserUtils {
 	public static Authentication getAuthentication() {
 		return SecurityContextHolder.getContext().getAuthentication();
 	}
 
-	public static User getLoginUserAccount() {
+	public static User getLoginUser() {
 		if (getAuthentication() != null
 				&& getAuthentication().getPrincipal() instanceof User) {
 			return (User) getAuthentication().getPrincipal();
@@ -22,10 +22,10 @@ public class AccountUtils {
 	}
 
 	public static String getLoginUserId() {
-		User account = getLoginUserAccount();
+		User account = getLoginUser();
 		return (account == null) ? null : account.getUserId();
 	}
 
-	private AccountUtils() {
+	private UserUtils() {
 	}
 }

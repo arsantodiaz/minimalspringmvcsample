@@ -26,4 +26,5 @@ public class HomeController extends BaseController {
     public String account (Model uiModel) {
     	return "account";
     }
+    
 }
