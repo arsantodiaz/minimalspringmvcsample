@@ -11,7 +11,7 @@
 			<span th:if="${not page.hasPreviousPage}">&laquo;</span>
 			<a th:if="${page.hasPreviousPage}"
 			
-			th:attr="data-ng-click=${'page (' + (page.number-1) + ')'}" 
+			th:attr="data-ng-click=${'page (' + (page.number - 1) + ')'}" 
 			title="page to previous page">
 				&laquo;
 			</a>
@@ -20,7 +20,7 @@
 			<span th:if="${item.current}" th:text="${item.number}">1</span>
 			<a 
 				th:if="${not item.current}"
-				th:attr="data-ng-click=${'page (' + (item.number - 1) + ')'}" 
+				th:attr="data-ng-click=${'page (' + (item.number) + ')'}" 
 				>
 				<span th:text="${item.number}">1</span>
 			</a>
@@ -28,7 +28,7 @@
 		<li th:class="${page.hasNextPage}? '' : 'disabled'">
 			<span th:if="${not page.hasNextPage}">&raquo;</span>
 			<a th:if="${page.hasNextPage}"
-				th:attr="data-ng-click=${'page (' + (page.number) + ')'}" 
+				th:attr="data-ng-click=${'page (' + (page.number + 1) + ')'}" 
 				title="page to next page">
 				&raquo;
 			</a>
@@ -36,58 +36,10 @@
 		<li th:class="${page.lastPage}? 'disabled' : ''">
 			<span th:if="${page.lastPage}">Last &rarr;</span>
 			<a th:if="${not page.lastPage}"
-				th:attr="data-ng-click=${'page (' + (page.totalPages - 1) + ')'}"> 
+				th:attr="data-ng-click=${'page (' + (page.totalPages) + ')'}"> 
 				Last &rarr;
 			</a>
 		</li>
 	</ul>
 
-</div>
-
-
-<!-- Bootstrap paginator for angular -->
-<div th:fragment="clientpaginationbar">
-	<ul class="pagination paginatorStyle">
-		<li data-ng-class="page.firstPage ? 'disabled' : ''">
-			<span data-ng-if="page.firstPage">&larr; First</span>
-			<a data-ng-if="! page.firstPage" 
-				data-ng-click="page (0)">
-				&larr; First
-			</a>
-		</li>
-		<li data-ng-class="page.hasPreviousPage? '' : 'disabled'">
-			<span data-ng-if="! page.hasPreviousPage">&laquo;</span>
-			<a data-ng-if="page.hasPreviousPage"
-			
-			data-ng-click="page (page.number-1)" 
-			title="page to previous page">
-				&laquo;
-			</a>
-		</li>
-		<li data-ng-repeat="item in page.items" 
-			data-ng-class="item.current? 'active' : ''">
-			<span data-ng-if="item.current">{{item.number}}</span>
-			<a 
-				data-ng-if="! item.current"
-				data-ng-click="page (item.number - 1)" 
-				>
-				<span>{{item.number}}</span>
-			</a>
-		</li>
-		<li data-ng-class="page.hasNextPage? '' : 'disabled'">
-			<span data-ng-if="! page.hasNextPage">&raquo;</span>
-			<a data-ng-if="page.hasNextPage"
-				data-ng-click="page (page.number + 1)" 
-				title="page to next page">
-				&raquo;
-			</a>
-		</li>
-		<li data-ng-class="page.lastPage? 'disabled' : ''">
-			<span data-ng-if="page.lastPage">Last &rarr;</span>
-			<a data-ng-if="! page.lastPage"
-				data-ng-click="page (page.totalPages - 1)"> 
-				Last &rarr;
-			</a>
-		</li>
-	</ul>
 </div>
