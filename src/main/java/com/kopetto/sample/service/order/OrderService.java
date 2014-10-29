@@ -1,5 +1,7 @@
 package com.kopetto.sample.service.order;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,5 +16,7 @@ public interface OrderService {
 	Page<Order> getAllOrdersForUser(Pageable pageable, User loginUser);
 
 	void saveOrder(Order order);
+
+	void saveOrders(List<Order> orders);
 	
 }

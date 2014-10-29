@@ -1,5 +1,8 @@
 package com.kopetto.sample.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +30,24 @@ public class Orders {
 	private OrderService orderService;
 	
 	@Test
-	public void insertOrders () {
+	public void insertOrder () {
 		
 		//insert one order
 		Order order = new Order ("#1", "First order", "tony.kopetto");
 		orderService.saveOrder (order);
 		System.out.println ("order inserted");
+	}
+	
+	@Test
+	public void insertOrders () {
+		
+		//insert one order
+		List<Order> orders = new ArrayList<Order> ();
+		for (int i = 2; i < 100; i ++){
+			orders.add(new Order ("#" + i, "Order #" + i, "tony.kopetto"));
+		}
+		
+		orderService.saveOrders (orders);
+		System.out.println ("orders inserted");
 	}
 }

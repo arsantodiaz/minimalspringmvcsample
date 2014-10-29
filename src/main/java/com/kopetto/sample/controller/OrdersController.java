@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.kopetto.sample.domain.entity.order.Order;
 import com.kopetto.sample.service.order.OrderService;
+import com.kopetto.sample.util.PageHolder;
 import com.kopetto.sample.util.UserUtils;
 
 /**
@@ -33,8 +34,9 @@ public class OrdersController extends BaseController {
     	//get orders from DB
     	Page<Order> orders = orderService.getAllOrdersForUser (pageable, UserUtils.getLoginUser());
     	uiModel.addAttribute("orders", orders);
+    	uiModel.addAttribute("page", new PageHolder<Order> (orders));
     	
-    	return "orders/orderList";
+    	return "order/orderList";
     }
     
 }

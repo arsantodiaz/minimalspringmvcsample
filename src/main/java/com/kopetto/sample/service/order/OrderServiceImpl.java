@@ -1,5 +1,7 @@
 package com.kopetto.sample.service.order;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,11 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public void saveOrder(Order order) {
 		orderRepository.save(order);
+	}
+
+	@Override
+	public void saveOrders(List<Order> orders) {
+		orderRepository.save (orders);
 	}
 
 

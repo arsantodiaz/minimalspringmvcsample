@@ -31,10 +31,9 @@ directiveModule.directive ('tonyGrid', function () {
             $scope.page (this.pageNum);
 			
 		},
-		link:function ($scope) {
+		link:function ($scope, $element, $attrs, controller) {
             $scope.$on('$includeContentLoaded',function(event,data){
                 controller.templateLoaded=true;
-                ServerTableDirective.setupFilter ($scope, $element, $timeout, controller);
             });
 			
 			
