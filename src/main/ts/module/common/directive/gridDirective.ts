@@ -1,3 +1,5 @@
+/// <reference path="../../../../../../3rdparty/d.ts/angularjs/angular.d.ts"/>
+
 var directiveModule = angular.module ('tonyGridDirectiveModule', []);
 
 directiveModule.directive ('tonyGrid', function () {

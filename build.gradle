@@ -121,7 +121,20 @@ dependencies {
 test {
 }
 
+repositories {
+    mavenLocal ()
+    mavenCentral ()
+    
+    maven {
+        url 'https://github.com/sothmann/typescript-gradle-plugin/raw/mavenrepo/'
+    }
+    maven { url "http://repo.spring.io/libs-snapshot" }
+    maven { url 'https://github.com/sothmann/typescript-gradle-plugin/raw/mavenrepo/' }
+    
+}
+
 buildscript {
+
     repositories {
 	    mavenLocal ()
 	    mavenCentral ()
@@ -136,14 +149,20 @@ buildscript {
     dependencies {
         classpath 'de.richsource.gradle.plugins:typescript-gradle-plugin:1.0.5'
     }
+    
 }
 
 compileTypeScript {
     sourcemap = true
-    source = 'src/main/webapp'
+    source = 'src/main/ts'
 }
 
-
 war {
+ 	dependsOn 'compileTypeScript'
 	archiveName="sample.war"
+	
+	//copy generates JS into resources
+	into("resources/module/common") {
+		from compileTypeScript.outputs
+	} 
 }
