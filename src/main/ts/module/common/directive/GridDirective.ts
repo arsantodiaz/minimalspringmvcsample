@@ -33,15 +33,18 @@ module TonyKopettoSampleWebApp.Directive {
         ){
         
             super ();
-            this.template="resources/module/common/html/grid.html";
+            this.templateUrl="resources/module/common/html/grid.html";
             this.restrict="E";
             
             this.scope=<TonyGridDirectiveScopeDefinition>{
                 template:"=",
                 rowsPerPage:"=?"
             };
-            
-            this.controller=function ($scope: ITonyGridDirectiveScope, $element:ng.IAugmentedJQuery, $attrs:any, controllers:any) {
+
+            //////////////////////////////
+            //Controller - setup scope
+            //////////////////////////////
+            this.controller=function ($scope: ITonyGridDirectiveScope, $element:ng.IAugmentedJQuery, $attrs:any) {
                 var _that=this;
     
                 if (!$scope.rowsPerPage)
@@ -62,6 +65,9 @@ module TonyKopettoSampleWebApp.Directive {
                 
             };
             
+            /////////////////////////////////////////////
+            //Link - handle template loaded flag
+            /////////////////////////////////////////////
             this.link=function ($scope: ITonyGridDirectiveScope, $element:ng.IAugmentedJQuery, $attrs:any, controller:any) {
                 $scope.$on('$includeContentLoaded',function(event,data){
                     controller.templateLoaded=true;
