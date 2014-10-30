@@ -161,7 +161,7 @@ war {
  	dependsOn 'compileTypeScript'
 	archiveName="sample.war"
 	
-	//copy generates JS into resources
+	//copy generated JS into resources
 	into("resources/module/common") {
 		from compileTypeScript.outputs
 	} 
