@@ -20,4 +20,4 @@ go to http://localhost:8080/sample
 Visit http://codingtricks.fidibuy.com, I'm blogging about this
 sample web app and other topics.
 
-This branch (M2) contains an example of using AngularJs to create a client side grid control with thymeleaf powered content
+This branch (M3) contains an example of using AngularJs to create a client side grid control with thymeleaf powered content, writte in TypeScript
