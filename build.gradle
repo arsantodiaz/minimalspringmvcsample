@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 allprojects  {
     apply plugin: 'java'
     apply plugin: 'idea'
@@ -165,4 +167,75 @@ war {
 	into("resources/module/common") {
 		from compileTypeScript.outputs
 	} 
+}
+
+
+////////////////////////////////
+//Tests
+////////////////////////////////
+
+//make sure we have defined selenium_url
+if (!project.hasProperty("selenium_url")) {
+    ext.selenium_url = 'http://localhost:4444/wd/hub'
+}
+
+//main task to run protractor tests
+task uiTests << {
+	println "Starting protractor tests"
+}
+
+//start selenimu, then run protractor
+uiTests.dependsOn 'startSelenium', 'runProtractor'
+
+//start Selenium server
+task startSelenium << {
+    println "Starting Selenium..."
+    ant.exec(executable: 'cmd', spawn: true) {
+        arg(value:'/c')
+        arg(value:'webdriver-manager')
+        arg(value:'start')
+    }
+}
+
+//run protractor
+task runProtractor(type:Exec) {
+    commandLine 'cmd','/c','protractor','build/protractor/protractor.conf.js', '--suite=smoke'
+}
+runProtractor.dependsOn 'setupProtractorConfig'
+
+//copy protractor config and replace all placeholders
+task setupProtractorConfig() <<{
+
+ 	def dir = new File("build/protractor");
+ 	if (! dir.exists ()){
+ 		dir.mkdirs ();
+ 	};
+ 	
+    copy {
+	 	
+        from files ('src/main/resources/protractor/protractor.conf.js', 'src/main/resources/protractor/protractor.onload.js')
+        into 'build/protractor'
+        filter(ReplaceTokens, tokens: [
+        					SELENIUM_URL: selenium_url,
+        					APP_URL:app_url
+        					])
+    }
+
+    copy {
+        from 'src/main/protractor/tests'
+        into 'build/protractor/tests'
+        filter(ReplaceTokens, tokens: [
+        					SELENIUM_URL: selenium_url,
+        					APP_URL:app_url
+        					])
+    }
+    
+    copy {
+        from 'src/main/protractor/pages'
+        into 'build/protractor/pages'
+        filter(ReplaceTokens, tokens: [
+        					SELENIUM_URL: selenium_url,
+        					APP_URL:app_url
+        					])
+    }
 }
