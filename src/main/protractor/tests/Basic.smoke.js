@@ -15,34 +15,25 @@ describe('Basic test: ', function(){
 		
 		it ('and has main section', function () {
 			basePage.waitOnCondition (function () {
-				return element(by.css('#main')).isDisplayed();
+				return element(by.css('.jumbotron')).isDisplayed();
 			});
 		});
 		
-		it ('and has "What would you like to do" section', function () {
-			expect(element(by.css('h1')).getText()).toEqual("What would you like to do?");
+		it ('and has "Welcome to Tony sample web app" section', function () {
+			expect(element(by.css('h1')).getText()).toEqual("Welcome to Tony's sample web app");
 		});
 	})
 
 	//////////////////////////////////////////
-	//Test for about page
+	//Test for search page
 	//////////////////////////////////////////
-	describe ('About Page test:', function () {
+	describe ('About Search test:', function () {
 		it ('Check that it loads', function () {
-			basePage.getPage ("about").then (function () {
-				console.log ("got about page");		
+			basePage.getPage ("search").then (function () {
+				console.log ("got search page");		
 			});
 		});
 		
-		it ('and has main section', function () {
-			basePage.waitOnCondition (function () {
-				return element(by.css('#main')).isDisplayed();
-			});
-		});
-		
-		it ('and has "How it works" section', function () {
-			expect(element(by.css('#team .section_header h3')).getText()).toEqual("How it works");
-		});
 	});
 	
 });
