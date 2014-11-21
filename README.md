@@ -20,4 +20,4 @@ go to http://localhost:8080/sample
 Visit http://codingtricks.fidibuy.com, I'm blogging about this
 sample web app and other topics.
 
-This branch (M4) contains Protractor Tests
+This branch (M5) contains and advanced grid control, which supports server side, client side data and thymeleaf/angular templates
